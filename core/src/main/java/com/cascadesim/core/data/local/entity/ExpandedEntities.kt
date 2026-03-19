@@ -2,6 +2,7 @@ package com.cascadesim.core.data.local.entity
 
 import androidx.room.*
 import com.cascadesim.core.domain.model.*
+import kotlinx.coroutines.flow.Flow
 
 /**
  * EXPANDED Database Entities for all new systems
