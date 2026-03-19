@@ -437,21 +437,6 @@ data class GameSaveEntity(
     val checksum: String
 )
 
-@Entity(tableName = "game_sessions")
-data class GameSessionEntity(
-    @PrimaryKey val id: String,
-    val name: String,
-    val playerStateJson: String,
-    val worldStateJson: String,
-    val gameDate: Long,
-    val realTimeStart: Long,
-    val totalPlayTime: Long,
-    val version: Int,
-    val seed: Long,
-    val statisticsJson: String,
-    val createdAt: Long
-)
-
 // ==================== TIME SYSTEM ENTITIES ====================
 
 @Entity(tableName = "scheduled_events")
@@ -790,21 +775,6 @@ interface GameSaveDao {
     
     @Query("DELETE FROM game_saves WHERE id = :id")
     suspend fun deleteById(id: String)
-}
-
-@Dao
-interface GameSessionDao {
-    @Query("SELECT * FROM game_sessions WHERE id = :id")
-    suspend fun getById(id: String): GameSessionEntity?
-    
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(session: GameSessionEntity)
-    
-    @Update
-    suspend fun update(session: GameSessionEntity)
-    
-    @Delete
-    suspend fun delete(session: GameSessionEntity)
 }
 
 @Dao
