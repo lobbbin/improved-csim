@@ -175,7 +175,6 @@ data class Subtask(
 /**
  * Task template for procedural generation of tasks.
  */
-@Parcelize
 data class TaskTemplate(
     val id: String,
     val name: String,
@@ -183,15 +182,20 @@ data class TaskTemplate(
     val baseDescription: String,
     val type: TaskType,
     val scope: TaskScope,
-    val priorityRange: ClosedRange<TaskPriority>,
-    val timeEstimateRange: ClosedRange<Long>,
+    val priorityMin: TaskPriority,
+    val priorityMax: TaskPriority,
+    val timeEstimateMin: Long,
+    val timeEstimateMax: Long,
     val requirementTemplates: List<RequirementTemplate>,
     val rewardTemplates: List<RewardTemplate>,
     val penaltyTemplates: List<PenaltyTemplate>,
     val childTaskTemplates: List<String>, // templateIds
     val category: TaskCategory,
     val tags: List<String>
-) : Parcelable
+) {
+    val priorityRange: ClosedRange<TaskPriority> get() = priorityMin..priorityMax
+    val timeEstimateRange: ClosedRange<Long> get() = timeEstimateMin..timeEstimateMax
+}
 
 enum class TaskCategory {
     GOVERNANCE,
@@ -205,25 +209,33 @@ enum class TaskCategory {
     CRISIS
 }
 
-@Parcelize
 data class RequirementTemplate(
     val type: RequirementType,
     val descriptionTemplate: String,
-    val valueRange: ClosedRange<Double>
-) : Parcelable
+    val valueMin: Double,
+    val valueMax: Double
+) {
+    val valueRange: ClosedRange<Double> get() = valueMin..valueMax
+}
 
-@Parcelize
 data class RewardTemplate(
     val type: RewardType,
     val descriptionTemplate: String,
-    val valueRange: ClosedRange<Double>,
+    val valueMin: Double,
+    val valueMax: Double,
     val guaranteedProbability: Double
-) : Parcelable
+) {
+    val valueRange: ClosedRange<Double> get() = valueMin..valueMax
+}
 
-@Parcelize
 data class PenaltyTemplate(
     val type: PenaltyType,
     val descriptionTemplate: String,
-    val valueRange: ClosedRange<Double>,
-    val probabilityRange: ClosedRange<Double>
-) : Parcelable
+    val valueMin: Double,
+    val valueMax: Double,
+    val probabilityMin: Double,
+    val probabilityMax: Double
+) {
+    val valueRange: ClosedRange<Double> get() = valueMin..valueMax
+    val probabilityRange: ClosedRange<Double> get() = probabilityMin..probabilityMax
+}

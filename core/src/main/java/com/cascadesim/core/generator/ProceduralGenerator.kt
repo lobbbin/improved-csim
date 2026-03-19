@@ -456,7 +456,7 @@ class ProceduralGenerator(private val seed: Long = System.currentTimeMillis()) {
             NPCRole.POLITICIAN -> listOf(Skill.ORATORY, Skill.CHARISMA, Skill.POLITICAL_SAVVY)
             NPCRole.DIPLOMAT -> listOf(Skill.DIPLOMACY, Skill.NEGOTIATION, Skill.INTELLIGENCE)
             NPCRole.BUSINESS_LEADER -> listOf(Skill.ECONOMICS, Skill.NEGOTIATION, Skill.CORRUPTION)
-            NPCRole.MILITARY_OFFICER -> listOf(Skill.MILITARY_STRATEGY, Skill.LOYALTY, Skill.CRISES_MANAGEMENT)
+            NPCRole.MILITARY_OFFICER -> listOf(Skill.MILITARY_STRATEGY, Skill.LOYALTY, Skill.CRISIS_MANAGEMENT)
             NPCRole.JUDGE -> listOf(Skill.LAW, Skill.INTELLIGENCE, Skill.ADMINISTRATION)
             NPCRole.CIVIL_SERVANT -> listOf(Skill.ADMINISTRATION, Skill.LOYALTY, Skill.ECONOMICS)
             else -> listOf(Skill.CHARISMA, Skill.MEDIA_RELATIONS, Skill.INTELLIGENCE)

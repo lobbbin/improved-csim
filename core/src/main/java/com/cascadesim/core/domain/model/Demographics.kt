@@ -50,12 +50,15 @@ data class Demographics(
 
 @Parcelize
 data class AgeGroup(
-    val ageRange: IntRange,
+    val ageMin: Int,
+    val ageMax: Int,
     val count: Long,
     val percentage: Double,
     val maleCount: Long,
     val femaleCount: Long
-) : Parcelable
+) : Parcelable {
+    val ageRange: IntRange get() = ageMin..ageMax
+}
 
 @Parcelize
 data class GenderDistribution(
@@ -104,10 +107,13 @@ data class IncomeDistribution(
 
 @Parcelize
 data class IncomeBracket(
-    val range: ClosedRange<Long>,
+    val incomeMin: Long,
+    val incomeMax: Long,
     val count: Long,
     val percentage: Double
-) : Parcelable
+) : Parcelable {
+    val range: ClosedRange<Long> get() = incomeMin..incomeMax
+}
 
 /**
  * Represents immigration and border control.

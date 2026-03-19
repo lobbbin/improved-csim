@@ -199,7 +199,7 @@ enum class TradeDealType {
 }
 
 @Parcelize
-data class TradeTerms(
+data class TradeTerm(
     val id: String,
     val article: String,
     val text: String,

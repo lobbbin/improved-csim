@@ -42,10 +42,10 @@ data class MatchResult(
     val date: Long,
     val homeScore: Int?,
     val awayScore: Int?,
-    val result: Result
+    val outcome: MatchOutcome
 ) : Parcelable
 
-enum class Result {
+enum class MatchOutcome {
     WIN,
     DRAW,
     LOSS,
@@ -98,7 +98,7 @@ enum class ScandalType {
 data class SportsEvent(
     val id: String,
     val name: String,
-    val type: EventType,
+    val type: SportsEventType,
     val sport: String?,
     val hostCity: String,
     val hostCountry: String,
@@ -110,7 +110,7 @@ data class SportsEvent(
     val status: EventStatus
 ) : Parcelable
 
-enum class EventType {
+enum class SportsEventType {
     OLYMPICS,
     WORLD_CUP,
     CONTINENTAL_CHAMPIONSHIP,

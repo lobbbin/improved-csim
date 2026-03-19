@@ -219,6 +219,11 @@ enum class ConsequenceType {
 data class MemoryImpact(
     val description: String,
     val affectedNPCs: List<String>,
-    val emotionalWeightRange: ClosedFloatingPointRange<Double>,
-    val importanceRange: IntRange
-) : Parcelable
+    val emotionalWeightMin: Double,
+    val emotionalWeightMax: Double,
+    val importanceMin: Int,
+    val importanceMax: Int
+) : Parcelable {
+    val emotionalWeightRange: ClosedFloatingPointRange<Double> get() = emotionalWeightMin..emotionalWeightMax
+    val importanceRange: IntRange get() = importanceMin..importanceMax
+}
